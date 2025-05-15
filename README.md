@@ -1,6 +1,5 @@
 [ENG](README_ENG.md)
-<h1 align="center">Jellyfin shikimori plugin</h1>
-<img align="center" src="https://shikimori.one/assets/layouts/l-top_menu-v2/glyph.svg" />
+<h1 align="center">jellyfin-plugin-shikimori</h1>
 
 # О плагине
 
@@ -15,7 +14,7 @@
 # Установка
 
 1. Зайти в Администрирование -> Панель -> Плагины -> Репозитории.
-2. Добавить новый репозиторий, в поле "URL репозитория" ввести: `https://raw.githubusercontent.com/te9c/jellyfin-shikimori-plugin/main/manifest.json`.
+2. Добавить новый репозиторий, в поле "URL репозитория" ввести: `https://raw.githubusercontent.com/te9c/jellyfin-plugin-shikimori/main/manifest.json`.
 3. Установить плагин через каталог.
 
 # Сборка
