@@ -2,8 +2,8 @@
 name: "Shikimori"
 guid: "7edb2a28-5b8a-4fe8-ae11-d941315eb862"
 imageUrl: "https://shikimori.one/assets/layouts/l-top_menu-v2/glyph.svg"
-version: "4.2.0.0"
-targetAbi: "10.10.6"
+version: "4.3.0.0"
+targetAbi: "10.11.0.0"
 framework: "net8.0"
 owner: "te9c"
 overview: "Metadata provider for Shikimori"
@@ -13,4 +13,4 @@ artifacts:
 - "Jellyfin.Plugin.Shikimori.dll"
 - "Newtonsoft.Json.dll"
 changelog: >
-  Fixed bugs
+  Updated to Jellyfin 10.11 compatibility

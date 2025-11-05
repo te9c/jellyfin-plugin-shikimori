@@ -9,6 +9,14 @@
         "imageUrl": "https://shikimori.one/assets/layouts/l-top_menu-v2/glyph.svg",
         "versions": [
             {
+                "version": "4.3.0.0",
+                "changelog": "Updated to Jellyfin 10.11 compatibility\n",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/te9c/jellyfin-shikimori-plugin/releases/download/4.3.0.0/shikimori_4.3.0.0.zip",
+                "checksum": "33bd07e7d301bd2a07045ede784c73ab767fbf7dd62806f56e252e1cbc6353fd",
+                "timestamp": "2025-11-05T15:30:00Z"
+            },
+            {
                 "version": "4.2.0.0",
                 "changelog": "Fixed bugs\n",
                 "targetAbi": "10.10.6",
