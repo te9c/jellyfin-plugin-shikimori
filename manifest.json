@@ -5,9 +5,17 @@
         "description": "Adds metadata for anime tv and movies",
         "overview": "Metadata provider for Shikimori",
         "owner": "te9c",
-        "category": "Metadata",
+        "category": "Anime",
         "imageUrl": "https://shikimori.one/assets/layouts/l-top_menu-v2/glyph.svg",
         "versions": [
+            {
+                "version": "4.3.0.0",
+                "changelog": "Fixed bugs\n",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/te9c/jellyfin-plugin-shikimori/releases/download/4.3.0.0/shikimori_4.3.0.0.zip",
+                "checksum": "41541e27c5cd815abe2c191328888120",
+                "timestamp": "2025-11-11T19:35:20Z"
+            },
             {
                 "version": "4.2.0.0",
                 "changelog": "Fixed bugs\n",
