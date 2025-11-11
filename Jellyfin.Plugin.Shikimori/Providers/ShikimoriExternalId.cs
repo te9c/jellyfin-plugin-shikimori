@@ -16,11 +16,9 @@ namespace Jellyfin.Plugin.Shikimori.Providers
 
         public ExternalIdMediaType? Type
             => null;
-
-        public string? UrlFormatString 
-            => ShikimoriPlugin.ShikimoriBaseUrl + "/animes/{0}";
+        
 
         public bool Supports(IHasProviderIds item)
-            => item is Series || item is Movie;
+            => item is Series or Movie;
     }
 }
