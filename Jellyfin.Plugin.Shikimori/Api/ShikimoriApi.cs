@@ -9,7 +9,8 @@ namespace Jellyfin.Plugin.Shikimori.Api
         // See: https://shikimori.one/oauth
         public string ApplicationName { get; init; }
 
-        private const string ApiLink = $"{ShikimoriPlugin.ShikimoriBaseUrl}/api/graphql";
+        private string ApiLink => $"{ShikimoriPlugin.Instance!.ShikimoriBaseUrl}/api/graphql";
+
         private const string AnimeQuery = @"{
   animes({0}) {
     id

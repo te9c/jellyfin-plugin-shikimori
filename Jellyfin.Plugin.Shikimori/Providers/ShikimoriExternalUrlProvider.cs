@@ -16,7 +16,7 @@ namespace Jellyfin.Plugin.Shikimori.Providers
             {
                 if (item is Series or Movie)
                 {
-                    yield return ShikimoriPlugin.ShikimoriBaseUrl + $"/animes/{externalId}";
+                    yield return ShikimoriPlugin.Instance!.ShikimoriBaseUrl + $"/animes/{externalId}";
                 }
             }
         }

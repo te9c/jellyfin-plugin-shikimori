@@ -24,6 +24,7 @@ namespace Jellyfin.Plugin.Shikimori.Configuration
             SearchTitlePreference = TitlePreferenceType.Russian;
             GenreTitleLanguagePreference = GenreTitleLanguagePreferenceType.Russian;
             ShowCensored = false;
+            _shikimoriBaseUrl = ShikimoriPlugin.ShikimoriBaseUrlDefault;
         }
         private int _searchLimit;
         public int SearchLimit
@@ -38,5 +39,14 @@ namespace Jellyfin.Plugin.Shikimori.Configuration
         public TitlePreferenceType SearchTitlePreference { get; set; }
         public GenreTitleLanguagePreferenceType GenreTitleLanguagePreference { get; set; }
         public bool ShowCensored { get; set; }
+        
+        // TODO: make some kind of check on correctness of url.
+        private String _shikimoriBaseUrl;
+
+        public String ShikimoriBaseUrl
+        {
+            get => _shikimoriBaseUrl;
+            set => _shikimoriBaseUrl = value.TrimEnd('/');
+        }
     }
 }
