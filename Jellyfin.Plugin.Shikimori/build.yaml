@@ -1,7 +1,6 @@
 ---
 name: "Shikimori"
 guid: "7edb2a28-5b8a-4fe8-ae11-d941315eb862"
-imageUrl: "https://shikimori.one/assets/layouts/l-top_menu-v2/glyph.svg"
 version: "4.4.0.0"
 targetAbi: "10.11.0.0"
 framework: "net9.0"
