@@ -157,26 +157,36 @@ namespace Jellyfin.Plugin.Shikimori.Api
             }
         }
 
+        private static bool ShouldRetry(HttpResponseMessage response)
+        {
+            return response.StatusCode == HttpStatusCode.TooManyRequests
+                || (int)response.StatusCode >= 500;
+        }
+
         private async Task<GraphQlResponse?> WebRequestApi(GraphQlRequest request, CancellationToken cancellationToken)
         {
             for (var attempt = 1; attempt <= MaxRequestAttempts; attempt++)
             {
                 using var response = await PostWithThrottleAsync(request, cancellationToken).ConfigureAwait(false);
-                if (response.StatusCode == HttpStatusCode.TooManyRequests)
+                if (ShouldRetry(response))
                 {
                     if (attempt == MaxRequestAttempts)
                     {
-                        _logger.LogWarning("Shikimori API rate limit did not clear after {AttemptCount} attempts. Skipping this metadata request.", MaxRequestAttempts);
+                        _logger.LogWarning("Shikimori API returned HTTP {StatusCode} after {AttemptCount} attempts. Skipping this metadata request.", (int)response.StatusCode, MaxRequestAttempts);
                         return null;
                     }
 
                     var delay = GetRetryDelay(response, attempt);
-                    _logger.LogWarning("Shikimori API returned 429 Too Many Requests. Retrying in {DelaySeconds:0.##} seconds ({Attempt}/{MaxAttempts}).", delay.TotalSeconds, attempt, MaxRequestAttempts);
+                    _logger.LogWarning("Shikimori API returned HTTP {StatusCode}. Retrying in {DelaySeconds:0.##} seconds ({Attempt}/{MaxAttempts}).", (int)response.StatusCode, delay.TotalSeconds, attempt, MaxRequestAttempts);
                     await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
                     continue;
                 }
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogWarning("Shikimori API returned HTTP {StatusCode}. Skipping this metadata request.", (int)response.StatusCode);
+                    return null;
+                }
 
                 return JsonConvert.DeserializeObject<GraphQlResponse>(
                     await response.Content.ReadAsStringAsync().ConfigureAwait(false),

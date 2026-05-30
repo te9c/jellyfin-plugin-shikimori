@@ -22,7 +22,7 @@ namespace Jellyfin.Plugin.Shikimori
 
         public const string ProviderName = "Shikimori";
         public const string ProviderId = "Shikimori";
-        public const string ShikimoriBaseUrlDefault = "https://shikimori.one";
+        public const string ShikimoriBaseUrlDefault = "https://shikimori.io";
         public string ShikimoriBaseUrl
         {
             get
