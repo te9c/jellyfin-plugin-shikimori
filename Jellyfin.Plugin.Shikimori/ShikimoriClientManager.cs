@@ -24,7 +24,7 @@ namespace Jellyfin.Plugin.Shikimori
 
         public ShikimoriClientManager(ILogger<ShikimoriClientManager> logger)
         {
-            _shikimoriApi = new ShikimoriApi(_clientName);
+            _shikimoriApi = new ShikimoriApi(_clientName, logger);
 
             _logger = logger;
         }
@@ -43,7 +43,7 @@ namespace Jellyfin.Plugin.Shikimori
                     _ => null
                 },
                 censored = !ShikimoriPlugin.Instance!.Configuration.ShowCensored
-            }).ConfigureAwait(false)).ToList();
+            }, cancellationToken).ConfigureAwait(false)).ToList();
 
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -69,7 +69,7 @@ namespace Jellyfin.Plugin.Shikimori
 
         public async Task<Anime?> GetAnimeAsync(long id, CancellationToken cancellationToken, AnimeType? type = null)
         {
-            var anime = await _shikimoriApi.GetAnimeAsync(id, !ShikimoriPlugin.Instance!.Configuration.ShowCensored).ConfigureAwait(false);
+            var anime = await _shikimoriApi.GetAnimeAsync(id, !ShikimoriPlugin.Instance!.Configuration.ShowCensored, cancellationToken).ConfigureAwait(false);
             if (anime == null) return anime;
 
             cancellationToken.ThrowIfCancellationRequested();
@@ -95,7 +95,7 @@ namespace Jellyfin.Plugin.Shikimori
                     _ => null
                 },
                 censored = !ShikimoriPlugin.Instance!.Configuration.ShowCensored
-            }).ConfigureAwait(false);
+            }, cancellationToken).ConfigureAwait(false);
 
             cancellationToken.ThrowIfCancellationRequested();
 
