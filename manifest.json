@@ -8,6 +8,14 @@
         "category": "Anime",
         "versions": [
             {
+                "version": "5.0.0.0",
+                "changelog": "Fixed bugs\n",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/te9c/jellyfin-plugin-shikimori/releases/download/5.0.0.0/shikimori_5.0.0.0.zip",
+                "checksum": "eebe29ba8f32a6357beca58b7fc84b69",
+                "timestamp": "2026-06-03T15:37:56Z"
+            },
+            {
                 "version": "4.4.0.0",
                 "changelog": "Fixed bugs\n",
                 "targetAbi": "10.11.0.0",
