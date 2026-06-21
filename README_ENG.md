@@ -3,7 +3,7 @@
 
 # About
 
-This plugin adds the metadata provider for [Shikimori](https://shikimori.one)
+This plugin adds the metadata provider for [Shikimori](https://shikimori.io)
 
 # Installation
 

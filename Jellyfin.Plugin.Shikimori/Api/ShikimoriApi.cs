@@ -14,7 +14,7 @@ namespace Jellyfin.Plugin.Shikimori.Api
         private static DateTimeOffset _nextRequestAt = DateTimeOffset.MinValue;
 
         // WARNING: Usage of empty or invalid application name could result in ip ban for shikimori!
-        // See: https://shikimori.one/oauth
+        // See: https://shikimori.io/oauth
         public string ApplicationName { get; init; }
         private readonly ILogger _logger;
 
