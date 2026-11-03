@@ -13,7 +13,7 @@ This plugin adds the metadata provider for [Shikimori](https://shikimori.io)
 
 # Build
 
-1. Make sure that you have [.NET9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) installed
+1. Make sure that you have [.NET10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) installed
 2. Clone this repository
 3. Build plugin with following command
 ```bash

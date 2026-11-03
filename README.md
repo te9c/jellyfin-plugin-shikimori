@@ -22,7 +22,7 @@ https://raw.githubusercontent.com/te9c/jellyfin-plugin-shikimori/main/manifest.j
 
 # Сборка
 
-1. Установить [.NET9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+1. Установить [.NET10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 2. Склонировать этот репозиторий
 3. Скомпилировать плагин следующей командой:
 ```bash
