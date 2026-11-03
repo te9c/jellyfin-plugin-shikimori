@@ -1,7 +1,7 @@
 ---
 name: "Shikimori"
 guid: "7edb2a28-5b8a-4fe8-ae11-d941315eb862"
-version: "5.0.0.0"
+version: "5.1.0.0"
 targetAbi: "10.12.0.0"
 framework: "net10.0"
 owner: "te9c"
