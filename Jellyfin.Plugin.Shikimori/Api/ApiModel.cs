@@ -5,14 +5,12 @@ using MediaBrowser.Controller.Entities.Movies;
 using MediaBrowser.Controller.Entities.TV;
 using MediaBrowser.Model.Entities;
 using MediaBrowser.Model.Providers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Jellyfin.Plugin.Shikimori.Api
 {
     public class Data
     {
-        public AnimeBase[]? animes { get; set; }
+        public Anime[]? animes { get; set; }
     }
 
     public class GraphQlRequest
@@ -233,14 +231,6 @@ namespace Jellyfin.Plugin.Shikimori.Api
             FillBaseItem(result);
 
             return result;
-        }
-    }
-
-    public class AnimeBaseConverter : CustomCreationConverter<AnimeBase>
-    {
-        public override AnimeBase Create(Type objectType)
-        {
-            return new Anime();
         }
     }
 }

@@ -29,4 +29,4 @@ https://raw.githubusercontent.com/te9c/jellyfin-plugin-shikimori/main/manifest.j
 dotnet publish --configuration Release --output bin
 ```
 4. Создать директорию `shikimori` в папке с плагинами джелифина (Она находится в [основной директории jellyfin](https://jellyfin.org/docs/general/administration/configuration/#data-directory))
-5. Переместить dll `Jellyfin.Plugin.Shikimori.dll` и `Newtonsoft.Json.dll` из директории `bin` в `shikimori`, созданной в предыдущем шаге.
+5. Переместить `Jellyfin.Plugin.Shikimori.dll` из директории `bin` в `shikimori`, созданной в предыдущем шаге.

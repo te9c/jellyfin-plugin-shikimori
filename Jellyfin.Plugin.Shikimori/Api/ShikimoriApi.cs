@@ -1,13 +1,19 @@
 using System.Net;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Jellyfin.Plugin.Shikimori.Api
 {
     public class ShikimoriApi
     {
         private const int MaxRequestAttempts = 4;
+        private static readonly JsonSerializerOptions JsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            NumberHandling = JsonNumberHandling.AllowReadingFromString
+        };
         private static readonly SemaphoreSlim RequestGate = new SemaphoreSlim(1, 1);
         private static readonly TimeSpan MinRequestInterval = TimeSpan.FromMilliseconds(750);
         private static readonly TimeSpan DefaultRateLimitDelay = TimeSpan.FromSeconds(10);
@@ -138,7 +144,7 @@ namespace Jellyfin.Plugin.Shikimori.Api
                 var httpClient = ShikimoriPlugin.Instance!.HttpClientFactory.CreateClient();
                 httpClient.DefaultRequestHeaders.Add("User-Agent", ApplicationName);
 
-                var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+                using var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
                 var response = await httpClient.PostAsync(ApiLink, content, cancellationToken).ConfigureAwait(false);
 
                 var nextRequestAt = DateTimeOffset.UtcNow + MinRequestInterval;
@@ -188,10 +194,16 @@ namespace Jellyfin.Plugin.Shikimori.Api
                     return null;
                 }
 
-                return JsonConvert.DeserializeObject<GraphQlResponse>(
-                    await response.Content.ReadAsStringAsync().ConfigureAwait(false),
-                    new AnimeBaseConverter()
-                    );
+                await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                try
+                {
+                    return await JsonSerializer.DeserializeAsync<GraphQlResponse>(stream, JsonOptions, cancellationToken).ConfigureAwait(false);
+                }
+                catch (JsonException)
+                {
+                    _logger.LogWarning("Shikimori API returned invalid JSON. Skipping this metadata request.");
+                    return null;
+                }
             }
 
             return null;
@@ -225,9 +237,7 @@ namespace Jellyfin.Plugin.Shikimori.Api
             var animes = graphQlResponse?.data?.animes;
             if (animes == null || animes.Count() == 0) return null;
 
-            var animeJson = animes.First();
-
-            return (Anime)animeJson;
+            return animes.First();
         }
     }
 }
